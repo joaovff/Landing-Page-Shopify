@@ -1,4 +1,4 @@
-# Shopify Theme — Landing Page Assessment
+# Shopify Theme: Landing Page Assessment
 
 A metafield-driven Shopify landing page built with Liquid sections, responsive on desktop and mobile.
 
