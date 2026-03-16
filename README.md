@@ -155,6 +155,6 @@ logo.webp
 
 Validated with `shopify theme check`. Result: **0 errors, 3 warnings**.
 
-The 3 warnings are all `RemoteAsset` on `layout/theme.liquid` and are intentional:
+The 3 warnings are all `RemoteAsset` on `layout/theme.liquid`:
 
 - **Google Fonts** — cannot be served from the Shopify CDN
