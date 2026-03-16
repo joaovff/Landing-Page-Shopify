@@ -33,21 +33,6 @@ To manage the menu links go to **Online Store → Navigation → Main menu**.
 
 ---
 
-### Navbar (`sections/navbar.liquid`)
-
-The navbar reads links dynamically from the store's `main-menu` link list. If the menu is empty or not configured, it falls back to 4 hardcoded items matching the design reference:
-
-| Fallback label |
-|---|
-| Log In |
-| Our Menus |
-| How to Heat |
-| About us |
-
-To manage the menu links go to **Online Store → Navigation → Main menu**.
-
----
-
 ### Hero (`sections/hero.liquid`)
 
 | Key | Type | Description | Fallback |
