@@ -1,0 +1,111 @@
+{%- assign m = page.metafields.custom -%}
+{%- assign why_love_us_title = m.why_love_us_title.value | default: "Why you'll love us" -%}
+{%- assign why_love_us_cta_label = m.why_love_us_cta_label.value | default: 'Get Dinner Sorted' -%}
+{%- assign why_love_us_cta_link = m.why_love_us_cta_link.value | default: '#' -%}
+{%- assign why_love_us_items = m.why_love_us_items.value -%}
+
+{%- assign fallback_titles = 'Flavour-first|Lighter & fresher|Dinner, sorted|Feel-good choices' | split: '|' -%}
+{%- assign fallback_subtitles = "All curries made in house in small batches using made spice blends - zero shortcuts, big flavour|Comforting, modern Indian dishes designed for weeknights - no curry coma!|One weekly menu - zero faff & ready when you are. Add sides + extra dabbas whenever you need|Reusable tins with everything cooked to order so there's zero waste" | split: '|' -%}
+{%- assign fallback_icons = 'dish-heart-icon.webp|serving-dish-icon.webp|dish-with-fork-icon.webp|smile-icon.webp' | split: '|' -%}
+
+<section class="why-love-us">
+  <div class="why-love-us__container">
+    <div class="why-love-us__grid">
+      <div class="why-love-us__content">
+        {% if why_love_us_title != blank %}
+          <h2 class="why-love-us__title display-4">{{ why_love_us_title }}</h2>
+        {% endif %}
+
+        <div class="why-love-us__items">
+          {% if why_love_us_items != blank %}
+            {% for item in why_love_us_items limit: 4 %}
+              {%- assign item_title = item.title.value -%}
+              {%- assign item_subtitle = item.subtitle.value -%}
+
+              <article class="why-love-us__item">
+                {% if item.icon_image.value != blank %}
+                  <div class="why-love-us__icon" aria-hidden="true">
+                    {{
+                      item.icon_image.value
+                      | image_url: width: 96
+                      | image_tag: class: 'why-love-us__icon-image', alt: item_title, loading: 'lazy', width: 96, height: 96
+                    }}
+                  </div>
+                {% endif %}
+
+                <div class="why-love-us__item-content">
+                  {% if item_title != blank %}
+                    <h3 class="why-love-us__item-title mb-3">{{ item_title }}</h3>
+                  {% endif %}
+
+                  {% if item_subtitle != blank %}
+                    <p class="why-love-us__item-text">{{ item_subtitle }}</p>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+
+          {% else %}
+            {% for title in fallback_titles %}
+              {%- assign index = forloop.index0 -%}
+              {%- assign fallback_title = fallback_titles[index] -%}
+              {%- assign fallback_subtitle = fallback_subtitles[index] -%}
+              {%- assign fallback_icon = fallback_icons[index] -%}
+
+              <article class="why-love-us__item">
+                <div class="why-love-us__icon" aria-hidden="true">
+                  <img
+                    src="{{ fallback_icon | asset_url }}"
+                    class="why-love-us__icon-image"
+                    alt="{{ fallback_title }}"
+                    loading="lazy"
+                    width="96"
+                    height="96"
+                  >
+                </div>
+
+                <div class="why-love-us__item-content">
+                  <h3 class="why-love-us__item-title mb-3">{{ fallback_title }}</h3>
+                  <p class="why-love-us__item-text">{{ fallback_subtitle }}</p>
+                </div>
+              </article>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        {% if why_love_us_cta_label != blank and why_love_us_cta_link != blank %}
+          <div class="why-love-us__cta-wrap">
+            <a href="{{ why_love_us_cta_link }}" class="why-love-us__cta">
+              {{ why_love_us_cta_label }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="why-love-us__media">
+        {% if m.why_love_us_image.value != blank %}
+          {{
+            m.why_love_us_image.value
+            | image_url: width: 1400
+            | image_tag:
+              class: 'why-love-us__image',
+              alt: why_love_us_title,
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1400',
+              sizes: '(min-width: 768px) 50vw, 100vw'
+          }}
+        {% else %}
+          <img
+            src="{{ 'why-you-will-love-us.webp' | asset_url }}"
+            class="why-love-us__image"
+            alt="{{ why_love_us_title }}"
+            loading="lazy"
+            width="1400"
+            height="1400"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+

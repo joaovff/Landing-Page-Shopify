@@ -1,0 +1,71 @@
+{%- assign m = page.metafields.custom -%}
+
+{%- assign hero_title = m.hero_title.value | default: 'Our product is the best products' -%}
+{%- assign hero_description = m.hero_description.value | default: 'We deliver fast, secure and free, all orders above $550.' -%}
+{%- assign hero_button_label = m.hero_button_label.value | default: 'Get Dinner Sorted' -%}
+{%- assign hero_button_link = m.hero_button_link.value | default: '#' -%}
+{%- assign hero_social_proof = m.hero_social_proof.value | default: "Trusted by 1000's of Londoners weekly" -%}
+
+<section class="hero-section p-0">
+  <div class="container-fluid h-100 p-0">
+    <div class="row g-0 h-100 hero-row">
+      <div class="col-12 col-md-6 hero-content justify-content-center align-items-center">
+        <div class="hero-content-inner">
+          {% if hero_title != blank %}
+            <h1 class="hero-title display-2">{{ hero_title }}</h1>
+          {% endif %}
+
+          {% if hero_description != blank %}
+            <p class="hero-description">{{ hero_description }}</p>
+          {% endif %}
+
+          {% if hero_button_label != blank and hero_button_link != blank %}
+            <a href="{{ hero_button_link }}" class="hero-btn">
+              {{ hero_button_label }}
+            </a>
+          {% endif %}
+
+          {% if hero_social_proof != blank %}
+            <p class="hero-social-proof">{{ hero_social_proof }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 hero-media">
+        {% if m.hero_image_desktop.value != blank %}
+          {{
+            m.hero_image_desktop.value
+            | image_url: width: 1600
+            | image_tag: class: 'hero-image hero-image--desktop', alt: hero_title, loading: 'eager', width: 1600, height: 900
+          }}
+        {% else %}
+          <img
+            src="{{ 'hero.webp' | asset_url }}"
+            class="hero-image hero-image--desktop"
+            alt="{{ hero_title }}"
+            width="1600"
+            height="900"
+            loading="eager"
+          >
+        {% endif %}
+
+        {% if m.hero_image_mobile.value != blank %}
+          {{
+            m.hero_image_mobile.value
+            | image_url: width: 900
+            | image_tag: class: 'hero-image hero-image--mobile', alt: hero_title, loading: 'eager', width: 900, height: 900
+          }}
+        {% else %}
+          <img
+            src="{{ 'hero-mobile.webp' | asset_url }}"
+            class="hero-image hero-image--mobile"
+            alt="{{ hero_title }}"
+            width="900"
+            height="900"
+            loading="eager"
+          >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

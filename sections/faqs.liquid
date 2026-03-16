@@ -1,0 +1,92 @@
+{%- assign m = page.metafields.custom -%}
+{%- assign faq_title = m.faq_title.value | default: 'FAQs' -%}
+{%- assign faq_items = m.faq_items.value -%}
+
+<section class="faqs">
+  <div class="faqs__container">
+    {% if faq_title != blank %}
+      <h2 class="faqs__title display-4">{{ faq_title }}</h2>
+    {% endif %}
+
+    <div class="faqs__list">
+      {% if faq_items != blank %}
+        {% for faq in faq_items %}
+          <details
+            class="faqs__item"
+            {% if forloop.first %}
+              open
+            {% endif %}
+          >
+            <summary class="faqs__question">
+              <span class="faqs__question-title">{{ faq.question.value }}</span>
+              <span class="faqs__icon" aria-hidden="true"></span>
+            </summary>
+
+            {% if faq.answer.value != blank %}
+              <div class="faqs__answer">
+                {{ faq.answer.value | newline_to_br }}
+              </div>
+            {% endif %}
+          </details>
+        {% endfor %}
+
+      {% else %}
+        <details class="faqs__item" open>
+          <summary class="faqs__question">
+            <span class="faqs__question-title">What is?</span>
+            <span class="faqs__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faqs__answer">
+            We are a weekly delivery of fresh, Indian-inspired dinners - cooked by us, ready for you to heat and eat.<br>
+            Each delivery comes in reusable steel dabbas and is designed to give you one proper, nourishing night of
+            cooking. No recipes, no prep, no last-minute takeaway decisions.<br>
+            Think of it as <em>home cooking, without having to cook.</em>
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__question">
+            <span class="faqs__question-title">How does the company work?</span>
+            <span class="faqs__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faqs__answer">
+            Each week we prepare a menu of fresh dishes. You place your order and we deliver everything ready to heat
+            and enjoy at home.
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__question">
+            <span class="faqs__question-title">How much it cost?</span>
+            <span class="faqs__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faqs__answer">
+            Pricing depends on the meals and extras you choose for the week. You can see the exact price before
+            confirming your order.
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__question">
+            <span class="faqs__question-title">Is this a subscription?</span>
+            <span class="faqs__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faqs__answer">
+            No. You can order whenever you like. There is no long-term commitment required.
+          </div>
+        </details>
+
+        <details class="faqs__item">
+          <summary class="faqs__question">
+            <span class="faqs__question-title">Are you a takeaway or meal kit?</span>
+            <span class="faqs__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faqs__answer">
+            We are somewhere in between. The food is freshly cooked by us and delivered ready to heat and enjoy, without
+            the prep of a traditional meal kit.
+          </div>
+        </details>
+      {% endif %}
+    </div>
+  </div>
+</section>

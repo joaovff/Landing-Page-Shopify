@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "navbar": { "type": "navbar", "settings": {} },
+    "hero": { "type": "hero", "settings": {} },
+    "how_it_works": { "type": "how_it_works", "settings": {} },
+    "why_love_us": { "type": "why_love_us", "settings": {} },
+    "faqs": { "type": "faqs", "settings": {} }
+  },
+  "order": ["navbar", "hero", "how_it_works", "why_love_us", "faqs"]
+}

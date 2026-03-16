@@ -1,0 +1,46 @@
+{
+  "current": {
+    "section": { "hero-section": { "type": "hero", "settings": {} } },
+    "sections": {
+      "header": { "type": "header", "settings": {} },
+      "text-center": {
+        "type": "text-center",
+        "settings": { "text_input": "Hello world!" }
+      },
+      "faq": {
+        "type": "faq",
+        "blocks": {
+          "faq_block_LLgcxG": {
+            "type": "faq-block",
+            "settings": {
+              "faq_question": "Question 1",
+              "faq_answer": "Answer 1"
+            }
+          },
+          "faq_block_Jya8Nq": {
+            "type": "faq-block",
+            "settings": {
+              "faq_question": "Question 2",
+              "faq_answer": "Answer 2"
+            }
+          },
+          "faq_block_47Yqym": {
+            "type": "faq-block",
+            "settings": {
+              "faq_question": "Question 3",
+              "faq_answer": "Answer 3"
+            }
+          }
+        },
+        "block_order": [
+          "faq_block_LLgcxG",
+          "faq_block_Jya8Nq",
+          "faq_block_47Yqym"
+        ],
+        "settings": {}
+      }
+    },
+    "content_for_index": []
+  },
+  "presets": { "Default": {} }
+}

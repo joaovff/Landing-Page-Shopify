@@ -1,0 +1,87 @@
+{%- assign m = page.metafields.custom -%}
+{%- assign how_it_works_title = m.how_it_works_title.value | default: 'How it works' -%}
+{%- assign how_it_works_cta_label = m.how_it_works_cta_label.value | default: 'Get Dinner Sorted' -%}
+{%- assign how_it_works_cta_link = m.how_it_works_cta_link.value | default: '#' -%}
+{%- assign how_it_works_steps = m.how_it_works_steps.value -%}
+
+{%- assign fallback_numbers = '1|2|3|4' | split: '|' -%}
+{%- assign fallback_titles = 'Choose your meals|We deliver|Cook with ease|Enjoy your meal' | split: '|' -%}
+{%- assign fallback_subtitles = 'Browse our weekly menu and pick your favourites.|Ingredients are delivered fresh to your door.|Follow simple step-by-step recipes.|Sit back and enjoy a delicious dinner.' | split: '|' -%}
+{%- assign fallback_icons = 'calendar-icon.webp|deliver-icon.webp|microwave-icon.webp|heart-icon.webp' | split: '|' -%}
+
+<section class="how-it-works">
+  <div class="how-it-works__container">
+    {% if how_it_works_title != blank %}
+      <h2 class="how-it-works__title display-4">{{ how_it_works_title }}</h2>
+    {% endif %}
+
+    <div class="how-it-works__grid">
+      {% if how_it_works_steps != blank %}
+        {% for step in how_it_works_steps limit: 4 %}
+          {%- assign step_number = step.step_number.value -%}
+          {%- assign step_title = step.title.value -%}
+          {%- assign step_subtitle = step.subtitle.value -%}
+
+          <article class="how-it-works__item">
+            {% if step_number != blank %}
+              <div class="how-it-works__step">0{{ forloop.index }}</div>
+            {% endif %}
+
+            {% if step.icon_image.value != blank %}
+              <div class="how-it-works__icon" aria-hidden="true">
+                {{
+                  step.icon_image.value
+                  | image_url: width: 120
+                  | image_tag: class: 'how-it-works__icon-image', alt: step_title, loading: 'lazy', width: 120, height: 120
+                }}
+              </div>
+            {% endif %}
+
+            {% if step_title != blank %}
+              <h3 class="how-it-works__item-title">{{ step_title }}</h3>
+            {% endif %}
+
+            {% if step_subtitle != blank %}
+              <p class="how-it-works__item-text">{{ step_subtitle | newline_to_br }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+
+      {% else %}
+        {% for title in fallback_titles %}
+          {%- assign index = forloop.index0 -%}
+          {%- assign fallback_number = fallback_numbers[index] -%}
+          {%- assign fallback_title = fallback_titles[index] -%}
+          {%- assign fallback_subtitle = fallback_subtitles[index] -%}
+          {%- assign fallback_icon = fallback_icons[index] -%}
+
+          <article class="how-it-works__item">
+            <div class="how-it-works__step">0{{ fallback_number }}</div>
+
+            <div class="how-it-works__icon" aria-hidden="true">
+              <img
+                src="{{ fallback_icon | asset_url }}"
+                class="how-it-works__icon-image"
+                alt="{{ fallback_title }}"
+                loading="lazy"
+                width="120"
+                height="120"
+              >
+            </div>
+
+            <h3 class="how-it-works__item-title">{{ fallback_title }}</h3>
+            <p class="how-it-works__item-text">{{ fallback_subtitle }}</p>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% if how_it_works_cta_label != blank and how_it_works_cta_link != blank %}
+      <div class="how-it-works__cta-wrap">
+        <a href="{{ how_it_works_cta_link }}" class="how-it-works__cta">
+          {{ how_it_works_cta_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,55 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Joao's template theme",
+    "theme_version": "1.1.0",
+    "theme_author": "João Silva",
+    "theme_documentation_url": "https://github.com/joaovff/Landing-Page-Shopify",
+    "theme_support_url": "https://github.com/joaovff/Landing-Page-Shopify"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Theme colors"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "label": "Heading color",
+        "default": "#007663"
+      },
+      {
+        "type": "color",
+        "id": "color_cta",
+        "label": "CTA color",
+        "default": "#dc325f"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_background",
+        "label": "Background color",
+        "default": "#fbece0"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary_background",
+        "label": "Background color",
+        "default": "#f8ba23"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "White",
+        "default": "#fefcfd"
+      },
+      {
+        "type": "color",
+        "id": "color_black",
+        "label": "Black",
+        "default": "#2b2b2b"
+      }
+    ]
+  }
+]
